@@ -139,26 +139,26 @@
             var terms = document.forms["myForm"]["terms"].checked;
 
             if (firstName == "" ) {
-                document.getElementsByClassName("formerror")[0].innerHTML = "Name can not be empty";
+                document.getElementsByClassName("formerror")[0].innerHTML = "*Name can not be empty";
                 return false;
             }
             if (lastName == "" ) {
-                document.getElementsByClassName("formerror")[1].innerHTML = "Name can not be empty";
+                document.getElementsByClassName("formerror")[1].innerHTML = "*Name can not be empty";
                 return false;
             }
 
             if (phone.length!=10) {
-                document.getElementsByClassName("formerror")[2].innerHTML = "Please enter a valid phone number";
+                document.getElementsByClassName("formerror")[2].innerHTML = "*Please enter a valid phone number";
                 return false;
             }
 
             if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
-                document.getElementsByClassName("formerror")[3].innerHTML = "Please enter a valid email address";
+                document.getElementsByClassName("formerror")[3].innerHTML = "*Please enter a valid email address";
                 return false;
             }
 
             if (!password.match(/^(?=.*\d)(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)) {
-                document.getElementsByClassName("formerror")[4].innerHTML = "Password must contain at least 8 characters,numeric value,uppercase";
+                document.getElementsByClassName("formerror")[4].innerHTML = "*Password must contain at least 8 characters,numeric value,uppercase";
                 return false;
             }
 
