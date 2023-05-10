@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;700&family=Coming+Soon&family=Space+Grotesk:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <title>Form Validation</title>
+
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0px;
+            font-family: 'Comfortaa', cursive;
+        }
+
+        body {
+            overflow: hidden;
+            background-color: #1f293a;
+        }
+
+        .container {
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            height: 95vh;
+            justify-content: center;
+            flex-direction: column;
+            background-color: #1f293a;
+            border: 1px solid rgb(165 114 0);
+            margin: 20px;
+            box-shadow: 1px 1px 20px rgb(191 142 31);
+        }
+
+        label {
+            font-size: 0.8em;
+            position: relative;
+            top: 2%;
+            left: 0;
+            color: rgb(219 171 93);
+            background-color: #1f293a;
+            padding: 0 6px;
+        }
+
+        input {
+
+            padding: 1.5vh 5vh;
+            margin: 1vh;
+
+
+            border-radius: 20%;
+
+            border: 2px solid rgb(214, 180, 125);
+            /* border-radius: 5vh; */
+            background: transparent;
+            color: darkgoldenrod;
+            font-size: 1em;
+            text-align: center;
+            vertical-align: bottom;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="number"]:focus {
+            border: solid 1.2px rgb(175, 151, 113);
+            outline: none;
+        }
+
+        input[type="checkbox"] {
+            width: 1.2em;
+            height: 1.2em;
+            border: 5em solid rgb(141, 115, 0);
+            border-radius: 2px;
+            background-color: black;
+            background: transparent;
+
+            accent-color: rgb(255, 187, 0);
+
+        }
+
+        .checkbox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            color: rgb(255 176 0);
+            margin-bottom: 3vh;
+            text-decoration: underline;
+            text-decoration-style: dashed;
+            text-transform: uppercase;
+        }
+
+        button {
+            padding: 2vh 15vh;
+            margin: 1vh;
+            border-radius: 5vh;
+            background-color: rgb(233 180 62);
+            font-weight: 800;
+            font-size: medium;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background-color: rgb(228, 187, 98);
+        }
+
+        button:active {
+            background-color: rgb(169, 126, 33);
+        }
+
+        .checkbox label {
+            font-size: small;
+            left: auto;
+        }
+        span{
+        color: white;
+      }
+
+        
+    </style>
+
+
+    <script>
+        function validateForm() {
+            var firstName = document.forms["myForm"]["firstName"].value;
+            var lastName = document.forms["myForm"]["lastName"].value;
+            var phone = document.forms["myForm"]["phone"].value;
+            var email = document.forms["myForm"]["email"].value;
+            var password = document.forms["myForm"]["password"].value;
+            var terms = document.forms["myForm"]["terms"].checked;
+
+            if (firstName == "" ) {
+                document.getElementsByClassName("formerror")[0].innerHTML = "Name can not be empty";
+                return false;
+            }
+            if (lastName == "" ) {
+                document.getElementsByClassName("formerror")[1].innerHTML = "Name can not be empty";
+                return false;
+            }
+
+            if (phone.length!=10) {
+                document.getElementsByClassName("formerror")[2].innerHTML = "Please enter a valid phone number";
+                return false;
+            }
+
+            if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+                document.getElementsByClassName("formerror")[3].innerHTML = "Please enter a valid email address";
+                return false;
+            }
+
+            if (!password.match(/^(?=.*\d)(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)) {
+                document.getElementsByClassName("formerror")[4].innerHTML = "Password must contain at least 8 characters,numeric value,uppercase";
+                return false;
+            }
+
+            if (!terms) {
+                document.getElementsByClassName("formerror")[5].innerHTML = "*";
+                document.getElementsByClassName("formerror")[5].style.color = "red";
+                return false;
+            }
+
+            console.log("First Name: " + firstName);
+            console.log("Last Name: " + lastName);
+            console.log("Phone: " + phone);
+            console.log("Email: " + email);
+            console.log("Password: " + password);
+
+            alert("Form submitted successfully");
+        }
+    </script>
+</head>
+<body>
+    <form name="myForm" onsubmit="return validateForm()">
+        <div class="container">
+
+        <h1>Entry Form</h1>
+
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName">
+        <span class="formerror"></span>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName">
+        <span class="formerror"></span>
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone">
+        <span class="formerror"></span>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" >
+        <span class="formerror"></span>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <span class="formerror"></span>
+
+        <div class="checkbox">
+        <input type="checkbox" id="terms" name="terms">
+        <span class="formerror"></span>
+        <label for="terms">I agree to the given Terms and Conditions.</label>
+        </div>
+
+        <button type="submit">Submit</button>
+
+    </div>
+    </form>
+</body>
+</html>
